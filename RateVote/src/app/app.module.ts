@@ -16,7 +16,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {DbService} from './shared/db.service'
 import {AuthService} from './shared/auth.service';
-import {PollComponent} from "./poll/poll.component";
+import {PollComponent} from './poll/poll.component';
+import {StarRatingModule} from 'angular-star-rating';
+import {RatingModule} from 'ngx-rating';
+import { RatingsExperimentsComponent } from './ratings-experiments/ratings-experiments.component';
 
 
 const appRoutes: Routes = [
@@ -26,8 +29,12 @@ const appRoutes: Routes = [
     redirectTo: 'login'
   },
   {
-    path: 'PeopleMatcherName',
-    component: LoginComponent
+    path: 'poll/PeopleMatcherName',
+    component: PollComponent,
+  },
+  {
+    path: 'stars',
+    component: RatingsExperimentsComponent,
   },
 ];
 
@@ -36,6 +43,7 @@ const appRoutes: Routes = [
     AppComponent,
     PollComponent,
     LoginComponent,
+    RatingsExperimentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +62,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    StarRatingModule.forRoot(),
+    RatingModule,
   ],
   providers: [
     AuthService,
