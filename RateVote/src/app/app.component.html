@@ -5,6 +5,12 @@
   </h1>
 </div>
 
+<button  *ngIf="!(authService.user | async)?.displayName" md-button (click)="authService.login()">Login via Google</button>
+<button *ngIf="(authService.user | async)?.displayName" md-button>
+  {{ (authService.user | async)?.displayName }}
+</button>
+
+
 <router-outlet>
 
 </router-outlet>

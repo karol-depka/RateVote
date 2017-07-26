@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'RateVote';
+
+  constructor(
+    public authService: AuthService,
+  ) {
+    this.authService.user.subscribe((user) => {
+      // alert('auth service user fires');
+      console.log('auth service user fires', user);
+    });
+  }
+
 }
