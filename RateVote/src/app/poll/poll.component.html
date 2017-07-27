@@ -1,5 +1,28 @@
 <p>
   <b>Poll: </b>{{id}}
 </p>
+<table>
+  <tr>
+    <ng-template md-list ngFor let-option [ngForOf]="options | async" >
+      <tr app-poll-option [pollOption]="option">
+      </tr>
+    </ng-template>
+  </tr>
+
+</table>
+
+<form>
+  <md-input-container style="width:100%">
+    <input
+      mdInput
+      [formControl]="newPollTitle"
+      (keydown.enter)="addPollOption()"
+    >
+    <md-placeholder>
+      Add poll option
+    </md-placeholder>
+  </md-input-container>
+</form>
+
 
 

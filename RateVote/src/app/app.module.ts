@@ -20,6 +20,9 @@ import {PollComponent} from './poll/poll.component';
 import {StarRatingModule} from 'angular-star-rating';
 import {RatingModule} from 'ngx-rating';
 import { RatingsExperimentsComponent } from './ratings-experiments/ratings-experiments.component';
+import {PollService} from './shared/poll.service';
+import {VoteService} from './shared/vote.service';
+import { PollOptionComponent } from './poll/poll-option/poll-option.component';
 
 
 const appRoutes: Routes = [
@@ -44,6 +47,7 @@ const appRoutes: Routes = [
     PollComponent,
     LoginComponent,
     RatingsExperimentsComponent,
+    PollOptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +73,8 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     DbService,
+    PollService,
+    VoteService,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
