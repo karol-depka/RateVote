@@ -3,6 +3,8 @@ import {FormControl} from '@angular/forms';
 import {PollOption, PollService} from '../shared/poll.service';
 import {DbList} from '../shared/db.service';
 import {AuthService} from '../shared/auth.service';
+import {ActivatedRoute} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-poll',
@@ -13,15 +15,20 @@ export class PollComponent implements OnInit {
 
   options: DbList<PollOption>;
 
-  newPollTitle: FormControl;
+  newPollOptionTitle: FormControl;
 
 
-  pollId = 'PeopleMatcherName'
+  pollId: string = this.route.snapshot.params['pollId'];
+  pollTitle: string = this.pollId; // HACK
+  isPeopleMatcher: boolean = this.pollId === 'PeopleMatcherTopics'
+  showDomains: boolean = this.isPeopleMatcher
   private user;
 
   constructor(
     private pollService: PollService,
     private authService: AuthService,
+    private route: ActivatedRoute,
+    private titleService: Title,
   ) {
     authService.user.subscribe(user => {
       this.user = user;
@@ -29,8 +36,9 @@ export class PollComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newPollTitle = new FormControl();
+    this.newPollOptionTitle = new FormControl();
     this.options = this.pollService.listOptionsForPoll(this.pollId);
+    this.titleService.setTitle('VoteRate - ' + this.pollTitle);
   }
 
   addPollOption() {
@@ -39,7 +47,7 @@ export class PollComponent implements OnInit {
         id: this.user.uid,
     }
     const newOption = {
-      title: this.newPollTitle.value,
+      title: this.newPollOptionTitle.value,
       history: {
         created: {
           when: new Date().toISOString().replace('T', '_'),

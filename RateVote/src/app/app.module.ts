@@ -32,7 +32,7 @@ const appRoutes: Routes = [
     redirectTo: 'login'
   },
   {
-    path: 'poll/PeopleMatcherName',
+    path: 'poll/:pollId',
     component: PollComponent,
   },
   {

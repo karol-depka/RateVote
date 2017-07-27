@@ -11,6 +11,7 @@ export class PollOptionComponent implements OnInit, OnChanges {
 
   @Input() pollOption: PollOption;
   @Input() pollId: string;
+  @Input() showDomains: boolean;
   rating: number;
 
   constructor(

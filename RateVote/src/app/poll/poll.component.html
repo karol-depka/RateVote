@@ -4,14 +4,15 @@
   <b>Poll: </b>{{pollId}}
 </p>
 
-  <p>
+  <p *ngIf="isPeopleMatcher">
     Potentially useful: synonyms: http://www.thesaurus.com/browse/connect?s=t
   </p>
   <p>
     If you would like to be recorded as an author of a poll option, please log in.
   </p>
+  <p>You are <b>encouraged</b> to pass the link to other people who might be interested! :)</p>
 
-  You do <b>not</b> have to rate all options.
+  <p>You do <b>not</b> have to rate all options.</p>
   <p>Results are hidden for now, to not suggest anything ;)</p>
 
 </md-card>
@@ -25,7 +26,10 @@
 <table>
   <tr>
     <ng-template md-list ngFor let-option [ngForOf]="options | async" >
-      <tr app-poll-option [pollOption]="option" [pollId]="pollId">
+      <tr app-poll-option
+          [pollOption]="option"
+          [pollId]="pollId"
+          [showDomains]="showDomains">
       </tr>
     </ng-template>
   </tr>
@@ -37,7 +41,7 @@
   >
     <input
       mdInput
-      [formControl]="newPollTitle"
+      [formControl]="newPollOptionTitle"
       (keydown.enter)="addPollOption()"
     >
     <md-placeholder>

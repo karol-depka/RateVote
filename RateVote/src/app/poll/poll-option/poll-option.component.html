@@ -3,10 +3,10 @@
     Option: <b>{{pollOption.title}} </b>
   </p>
 </td>
-<td>
+<td *ngIf="showDomains">
   Domain example: <b>{{domainExample()}}</b>
 </td>
-<td>
+<td *ngIf="showDomains">
   <pre style="font-family: monospace">
     {{domainExample()}}
   </pre>
