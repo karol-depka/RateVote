@@ -16,6 +16,12 @@ We will vote in the next version of VoteRate
 
 </md-card>
 
+<button  *ngIf="!(authService.user | async)"
+         md-button md-raised-button color="secondary"
+         (click)="authService.login()">
+  Please log in to add options
+</button>
+
 <table>
   <tr>
     <ng-template md-list ngFor let-option [ngForOf]="options | async" >
@@ -27,7 +33,8 @@ We will vote in the next version of VoteRate
 </table>
 
 <form>
-  <md-input-container style="width:100%">
+  <md-input-container style="width:100%" *ngIf="(authService.user | async)"
+  >
     <input
       mdInput
       [formControl]="newPollTitle"
@@ -37,7 +44,14 @@ We will vote in the next version of VoteRate
       Add poll option
     </md-placeholder>
   </md-input-container>
-</form>
 
+  <button  *ngIf="!(authService.user | async)"
+           md-button md-raised-button color="secondary"
+           (click)="authService.login()">
+    Please log in to add options
+  </button>
+
+
+</form>
 
 
