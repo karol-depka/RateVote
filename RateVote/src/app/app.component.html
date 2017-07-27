@@ -8,7 +8,7 @@
 <button  *ngIf="!(authService.user | async)?.displayName"
          md-button md-raised-button color="secondary"
          (click)="authService.login()">
-  Login via Google
+  Log in via Google
 </button>
 
 <button *ngIf="(authService.user | async)?.displayName"

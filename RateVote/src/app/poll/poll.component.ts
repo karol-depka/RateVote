@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {PollOption, PollService} from '../shared/poll.service';
 import {DbList} from '../shared/db.service';
+import {AuthService} from '../shared/auth.service';
 
 @Component({
   selector: 'app-poll',
@@ -16,10 +17,16 @@ export class PollComponent implements OnInit {
 
 
   id = 'PeopleMatcherName'
+  private user;
 
   constructor(
     private pollService: PollService,
-  ) { }
+    private authService: AuthService,
+  ) {
+    authService.user.subscribe(user => {
+      this.user = user;
+    })
+  }
 
   ngOnInit() {
     this.newPollTitle = new FormControl();
@@ -27,8 +34,18 @@ export class PollComponent implements OnInit {
   }
 
   addPollOption() {
+    const user = this.user && {
+        displayName: this.user.displayName,
+        id: this.user.uid,
+    }
     const newOption = {
-      title: this.newPollTitle.value
+      title: this.newPollTitle.value,
+      history: {
+        created: {
+          when: new Date().toISOString().replace('T', '_'),
+          byUser: user
+        }
+      }
     };
     console.log('addPollOption', newOption)
     this.options.push(newOption)
