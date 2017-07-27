@@ -1,7 +1,7 @@
 <md-card style="margin-bottom: 0.5em; margin-left: 0.5em; margin-right: 0.5em;">
 
 <p>
-  <b>Poll: </b>{{id}}
+  <b>Poll: </b>{{pollId}}
 </p>
 
 <p>NOTE: Voting does not work yet. So just add ideas for names.
@@ -14,6 +14,8 @@ We will vote in the next version of VoteRate
     If you would like to be recorded as an author of a poll option, please log in.
   </p>
 
+  You do <b>not</b> have to rate all options.
+
 </md-card>
 
 <button  *ngIf="!(authService.user | async)"
@@ -25,7 +27,7 @@ We will vote in the next version of VoteRate
 <table>
   <tr>
     <ng-template md-list ngFor let-option [ngForOf]="options | async" >
-      <tr app-poll-option [pollOption]="option">
+      <tr app-poll-option [pollOption]="option" [pollId]="pollId">
       </tr>
     </ng-template>
   </tr>

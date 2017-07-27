@@ -16,7 +16,7 @@ export class PollComponent implements OnInit {
   newPollTitle: FormControl;
 
 
-  id = 'PeopleMatcherName'
+  pollId = 'PeopleMatcherName'
   private user;
 
   constructor(
@@ -30,7 +30,7 @@ export class PollComponent implements OnInit {
 
   ngOnInit() {
     this.newPollTitle = new FormControl();
-    this.options = this.pollService.listOptionsForPoll(this.id);
+    this.options = this.pollService.listOptionsForPoll(this.pollId);
   }
 
   addPollOption() {
