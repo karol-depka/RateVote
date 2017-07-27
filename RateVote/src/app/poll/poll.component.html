@@ -1,6 +1,17 @@
+<md-card style="margin-bottom: 0.5em; margin-left: 0.5em; margin-right: 0.5em;">
+
 <p>
   <b>Poll: </b>{{id}}
 </p>
+
+<p>NOTE: Voting does not work yet. So just add ideas for names.
+We will vote in the next version of VoteRate
+</p>
+  <p>
+    Potentially useful: synonyms: http://www.thesaurus.com/browse/connect?s=t
+  </p>
+</md-card>
+
 <table>
   <tr>
     <ng-template md-list ngFor let-option [ngForOf]="options | async" >

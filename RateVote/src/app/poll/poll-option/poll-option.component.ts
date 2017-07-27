@@ -15,4 +15,8 @@ export class PollOptionComponent implements OnInit {
   ngOnInit() {
   }
 
+  domainExample() {
+    return this.pollOption.title.toLowerCase() + '.org';
+  }
+
 }
