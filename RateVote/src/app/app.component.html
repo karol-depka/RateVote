@@ -5,13 +5,18 @@
   </h1>
 </div>
 
-<button  *ngIf="!(authService.user | async)?.displayName" md-button (click)="authService.login()">Login via Google</button>
-<button *ngIf="(authService.user | async)?.displayName" md-button>
+<button  *ngIf="!(authService.user | async)?.displayName"
+         md-button md-raised-button color="secondary"
+         (click)="authService.login()">
+  Login via Google
+</button>
+
+<button *ngIf="(authService.user | async)?.displayName"
+        md-button md-raised-button color="secondary">
   {{ (authService.user | async)?.displayName }}
 </button>
 
 
-<router-outlet>
-
-</router-outlet>
-
+<div class="content-container" class.xs="content-container-mobile">
+  <router-outlet></router-outlet>
+</div>
