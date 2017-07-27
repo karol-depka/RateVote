@@ -26,8 +26,8 @@ export interface DbList<T> extends Observable<T[]> {
 @Injectable()
 export class DbService {
 
-  // DB_PREFIX = 'RVProd';
-  DB_PREFIX = 'RVTests';
+  DB_PREFIX = 'RVProd';
+  // DB_PREFIX = 'RVTests';
 
   constructor(
     private db: AngularFireDatabase
