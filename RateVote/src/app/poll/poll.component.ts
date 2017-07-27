@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {PollOption, PollService} from '../shared/poll.service';
 import {DbList} from '../shared/db.service';
@@ -16,11 +16,12 @@ export class PollComponent implements OnInit {
   options: DbList<PollOption>;
 
   newPollOptionTitle: FormControl;
+  // @ViewChild('newPollOptionTitle') newPollOptionTitleElement;
 
 
   pollId: string = this.route.snapshot.params['pollId'];
   pollTitle: string = this.pollId; // HACK
-  isPeopleMatcher: boolean = this.pollId === 'PeopleMatcherTopics'
+  isPeopleMatcher: boolean = this.pollId === 'PeopleMatcherName'
   showDomains: boolean = this.isPeopleMatcher
   private user;
 
@@ -29,6 +30,7 @@ export class PollComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private titleService: Title,
+    private elRef: ElementRef
   ) {
     authService.user.subscribe(user => {
       this.user = user;
@@ -38,7 +40,7 @@ export class PollComponent implements OnInit {
   ngOnInit() {
     this.newPollOptionTitle = new FormControl();
     this.options = this.pollService.listOptionsForPoll(this.pollId);
-    this.titleService.setTitle('VoteRate - ' + this.pollTitle);
+    this.titleService.setTitle('RateVote - ' + this.pollTitle);
   }
 
   addPollOption() {
@@ -57,6 +59,22 @@ export class PollComponent implements OnInit {
     };
     console.log('addPollOption', newOption)
     this.options.push(newOption)
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom() {
+    // try {
+    //   this.elRef.nativeElement.scrollTop = this.elRef.nativeElement.scrollHeight;
+    // setTimeout(() => {
+    //   this.elRef.nativeElement.scrollTop = this.elRef.nativeElement.scrollHeight;
+    // }, 1000)
+
+    // setTimeout(() => {
+    //   this.newPollOptionTitleElement.scrollIntoView()
+    // }, 1000)
+
+    // } catch (err) {
+    // }
   }
 
 

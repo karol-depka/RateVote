@@ -1,7 +1,7 @@
 <md-card style="margin-bottom: 0.5em; margin-left: 0.5em; margin-right: 0.5em;">
 
 <p>
-  <b>Poll: </b>{{pollId}}
+  <b>Poll Title: </b>{{pollTitle}}
 </p>
 
   <p *ngIf="isPeopleMatcher">
@@ -36,8 +36,10 @@
 
 </table>
 
+<!--<form #newPollOptionTitle>-->
 <form>
-  <md-input-container style="width:100%" *ngIf="(authService.user | async)"
+  <md-input-container
+      style="width:100%" *ngIf="(authService.user | async)"
   >
     <input
       mdInput
