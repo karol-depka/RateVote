@@ -12,14 +12,17 @@
   </pre>
 </td>
 <td>
-  <!-- rating disabled -->
   <rating
-    [(ngModel)]="rating"
+    [(ngModel)]="myGivenRating"
     (ngModelChange)="onRatingChanged($event)"
     [float]="true"
     [disabled]="false"
   >
   </rating>
 
-  {{ratingCount}} ratings, {{ratingAverage}}
+  <app-option-results *ngIf="showResults"
+    [pollOption]="pollOption"
+    [pollId]="pollId"
+  ></app-option-results>
+
 </td>

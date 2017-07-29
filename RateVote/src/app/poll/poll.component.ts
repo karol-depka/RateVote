@@ -23,6 +23,7 @@ export class PollComponent implements OnInit {
   pollTitle: string = this.pollId; // HACK
   isPeopleMatcher: boolean = this.pollId === 'PeopleMatcherName'
   showDomains: boolean = this.isPeopleMatcher
+  showResults: boolean = window.location.pathname.endsWith('/results')
   private user;
 
   constructor(

@@ -24,6 +24,7 @@ import {PollService} from './shared/poll.service';
 import {VoteService} from './shared/vote.service';
 import { PollOptionComponent } from './poll/poll-option/poll-option.component';
 import { OptionResultsComponent } from './poll/poll-option/option-results/option-results.component';
+import {RatingsResultsService} from './shared/ratings-results.service';
 
 
 const appRoutes: Routes = [
@@ -34,6 +35,10 @@ const appRoutes: Routes = [
   },
   {
     path: 'poll/:pollId',
+    component: PollComponent,
+  },
+  {
+    path: 'poll/:pollId/results',
     component: PollComponent,
   },
   {
@@ -77,6 +82,7 @@ const appRoutes: Routes = [
     DbService,
     PollService,
     VoteService,
+    RatingsResultsService,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

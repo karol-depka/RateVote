@@ -47,12 +47,8 @@ export class VoteService {
 
   }
 
-  private ratingsPath(pollId: string, pollOption: PollOption) {
+  ratingsPath(pollId: string, pollOption: PollOption) {
     return `Ratings/${pollId}/${(<any>pollOption).$key}`;
-  }
-
-  ratingList(pollId: string, pollOption: PollOption): DbList<GivenRating> {
-    return this.dbService.list(this.ratingsPath(pollId, pollOption));
   }
 
 }

@@ -1,3 +1,5 @@
-<p>
-  option-results works!
-</p>
+<ng-template [ngIf]="resultsSummary">
+
+  {{resultsSummary?.ratingCount}} ratings, {{resultsSummary?.ratingAverage}}
+
+</ng-template>

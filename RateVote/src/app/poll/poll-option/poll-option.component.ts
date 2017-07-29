@@ -15,28 +15,15 @@ export class PollOptionComponent implements OnInit, OnChanges {
   @Input() pollOption: PollOption;
 
   @Input() showDomains: boolean;
-  rating: number;
+  @Input() showResults: boolean;
 
-  ratingList: Array<GivenRating>;
-  ratingCount: number;
-  ratingAverage: number;
+  myGivenRating: number;
 
   constructor(
     private voteService: VoteService
   ) {}
 
   ngOnInit() {
-    this.voteService.ratingList(this.pollId, this.pollOption).subscribe(list => {
-      this.ratingList = list;
-      this.ratingCount = list.length;
-      const ratingNumbers = list.map(rating => {
-        return parseInt(rating.rating.split('/')[0])
-      });
-      const ratingAvg = ratingNumbers.reduce((a, b) => {
-        return a + b;
-      }) / list.length;
-      this.ratingAverage = Math.round(ratingAvg * 10) / 10;
-    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -48,11 +35,11 @@ export class PollOptionComponent implements OnInit, OnChanges {
   }
 
   onRatingChanged() {
-    // window.alert('' + this.rating)
+    // window.alert('' + this.myGivenRating)
     this.voteService.vote(
       this.pollId,
       this.pollOption,
-      this.rating,
+      this.myGivenRating,
       5);
 
   }

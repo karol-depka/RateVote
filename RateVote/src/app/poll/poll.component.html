@@ -23,13 +23,17 @@
   Please log in to add options
 </button>
 
+<p *ngIf="! (options | async)">Loading poll options...</p>
+
 <table>
   <tr>
     <ng-template md-list ngFor let-option [ngForOf]="options | async" >
       <tr app-poll-option
           [pollOption]="option"
           [pollId]="pollId"
-          [showDomains]="showDomains">
+          [showDomains]="showDomains"
+          [showResults]="showResults"
+      >
       </tr>
     </ng-template>
   </tr>

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {GivenRating} from '../../../shared/vote.service';
+import {RatingResultsSummary, RatingsResultsService} from '../../../shared/ratings-results.service';
+import {PollOption} from '../../../shared/poll.service';
 
 @Component({
   selector: 'app-option-results',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OptionResultsComponent implements OnInit {
 
-  constructor() { }
+  @Input() pollId: string;
+  @Input() pollOption: PollOption;
+
+  resultsSummary: RatingResultsSummary
+
+  constructor(
+    private ratingResultsService: RatingsResultsService
+  ) { }
 
   ngOnInit() {
+    this.ratingResultsService.ratingSummary(this.pollId, this.pollOption).subscribe(summary => {
+      this.resultsSummary = summary;
+    });
+
   }
 
 }
