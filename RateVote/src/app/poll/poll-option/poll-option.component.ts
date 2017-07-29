@@ -24,6 +24,9 @@ export class PollOptionComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
+    this.voteService.myGivenRating(this.pollId, this.pollOption).subscribe(it => {
+      this.myGivenRating = this.voteService.parseRatingNumber(it);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

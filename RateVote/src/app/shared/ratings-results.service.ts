@@ -18,11 +18,11 @@ export class RatingsResultsService {
 
   constructor(
     private dbService: DbService,
-    private voteSerice: VoteService,
+    private voteService: VoteService,
   ) { }
 
   ratingList(pollId: string, pollOption: PollOption): DbList<GivenRating> {
-    return this.dbService.list(this.voteSerice.ratingsPath(pollId, pollOption));
+    return this.dbService.list(this.voteService.ratingsPath(pollId, pollOption));
   }
 
   ratingSummary(pollId: string, pollOption: PollOption): Observable<RatingResultsSummary> {
@@ -30,7 +30,7 @@ export class RatingsResultsService {
     return ratingList.map(list => {
       const ratingCount = list.length;
       const ratingNumbers = list.map(rating => {
-        return parseFloat(rating.rating.split('/')[0])
+        return this.voteService.parseRatingNumber(rating)
       });
       let ratingAvg = ratingNumbers && ratingNumbers.length > 0 && (ratingNumbers.reduce((a, b) => {
           return a + b;

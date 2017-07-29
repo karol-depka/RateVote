@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {PollOption} from './poll.service';
-import {DbList, DbService} from './db.service';
+import {DbList, DbObject, DbService} from './db.service';
 import {AuthService} from './auth.service';
 import {Rating} from 'ngx-rating';
 
@@ -18,6 +18,16 @@ export class VoteService {
 
   }
 
+  parseRatingNumber(rating: GivenRating): number {
+    if ( rating ) {
+      return parseFloat(
+        rating.rating &&
+        rating.rating.split('/')[0]);
+    } else {
+      return undefined
+    }
+  }
+
   vote(pollId: string, pollOption: PollOption, rating: number, maxRating: number) {
 
     if ( ! this.authService.userSaved ) {
@@ -27,8 +37,7 @@ export class VoteService {
           displayName: this.authService.userSaved.displayName,
           id: this.authService.userSaved.uid,
         }
-      const dbObject = this.dbService.objectById(this.ratingsPath(pollId, pollOption),
-        this.authService.userSaved.uid);
+      const dbObject = this.myGivenRating(pollId, pollOption);
 
       const newObject = {
         pollOption: {
@@ -45,6 +54,11 @@ export class VoteService {
       dbObject.update(newObject);
     }
 
+  }
+
+  myGivenRating(pollId: string, pollOption: PollOption): DbObject<GivenRating> {
+    return this.dbService.objectById(this.ratingsPath(pollId, pollOption),
+      this.authService.userSaved.uid);
   }
 
   ratingsPath(pollId: string, pollOption: PollOption) {
