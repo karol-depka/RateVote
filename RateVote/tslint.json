@@ -78,7 +78,7 @@
       true,
       "single"
     ],
-    "radix": true,
+//    "radix": true,
     "semicolon": [
       "always"
     ],

@@ -23,6 +23,7 @@ import { RatingsExperimentsComponent } from './ratings-experiments/ratings-exper
 import {PollService} from './shared/poll.service';
 import {VoteService} from './shared/vote.service';
 import { PollOptionComponent } from './poll/poll-option/poll-option.component';
+import { OptionResultsComponent } from './poll/poll-option/option-results/option-results.component';
 
 
 const appRoutes: Routes = [
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
     LoginComponent,
     RatingsExperimentsComponent,
     PollOptionComponent,
+    OptionResultsComponent,
   ],
   imports: [
     BrowserModule,
