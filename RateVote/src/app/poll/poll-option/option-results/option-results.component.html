@@ -1,5 +1,8 @@
 <ng-template [ngIf]="resultsSummary">
 
-  {{resultsSummary?.ratingCount}} ratings, {{resultsSummary?.ratingAverage}}
+  {{resultsSummary?.ratingCount}} ratings
+  <ng-template [ngIf]="resultsSummary?.ratingCount > 0">
+    , {{resultsSummary?.ratingAverage}}
+  </ng-template>
 
 </ng-template>

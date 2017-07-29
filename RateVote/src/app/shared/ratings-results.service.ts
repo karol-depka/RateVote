@@ -30,12 +30,12 @@ export class RatingsResultsService {
     return ratingList.map(list => {
       const ratingCount = list.length;
       const ratingNumbers = list.map(rating => {
-        return parseInt(rating.rating.split('/')[0])
+        return parseFloat(rating.rating.split('/')[0])
       });
-      let ratingAvg = ratingNumbers && ratingNumbers.length > 0 && ratingNumbers.reduce((a, b) => {
+      let ratingAvg = ratingNumbers && ratingNumbers.length > 0 && (ratingNumbers.reduce((a, b) => {
           return a + b;
-        }) / list.length;
-      ratingAvg = Math.round(ratingAvg * 10) / 10;
+        }) / list.length);
+      ratingAvg = ratingAvg ? Math.round(ratingAvg * 10) / 10 : undefined;
 
       const resultsSummary = new RatingResultsSummary(
         {
