@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {PollOption, PollService} from '../shared/poll.service';
+import {Poll, PollOption, PollService} from '../shared/poll.service';
 import {DbList} from '../shared/db.service';
 import {AuthService} from '../shared/auth.service';
 import {ActivatedRoute} from '@angular/router';
@@ -21,6 +21,10 @@ export class PollComponent implements OnInit {
 
   pollId: string = this.route.snapshot.params['pollId'];
   pollTitle: string = this.pollId; // HACK
+  poll: Poll = { // quick hack
+    $key: this.pollId,
+    title: this.pollTitle,
+  }
   isPeopleMatcher: boolean = this.pollId === 'PeopleMatcherName'
   showDomains: boolean = this.isPeopleMatcher
   showResults: boolean = window.location.pathname.endsWith('/results')

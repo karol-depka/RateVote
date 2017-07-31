@@ -27,8 +27,9 @@ export class CommentEditComponent implements OnInit {
   addComment() {
 
     const commentText = this.commentText.value
-    this.lastCommentText = commentText;
-    this.commentsService.addComment(this.commentTarget, commentText);
+    this.lastCommentText = commentText
+    this.commentsService.addComment(this.commentTarget, commentText)
+    this.commentText.setValue('')
 
   }
 
