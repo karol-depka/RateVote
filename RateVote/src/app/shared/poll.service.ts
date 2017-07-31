@@ -9,6 +9,7 @@ export class Poll {
 
 export class PollOption {
   title: string
+  pollId?: string
 }
 
 @Injectable()

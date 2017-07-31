@@ -3,6 +3,7 @@ import {PollOption} from '../../shared/poll.service';
 import {GivenRating, VoteService} from '../../shared/vote.service';
 import {Rating} from 'ngx-rating';
 import {DbList} from '../../shared/db.service';
+import {AuthService} from '../../shared/auth.service'
 
 @Component({
   selector: '[app-poll-option]',
@@ -20,13 +21,18 @@ export class PollOptionComponent implements OnInit, OnChanges {
   myGivenRating: number;
 
   constructor(
-    private voteService: VoteService
+    private voteService: VoteService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.voteService.myGivenRating(this.pollId, this.pollOption).subscribe(it => {
-      this.myGivenRating = this.voteService.parseRatingNumber(it);
-    });
+    this.authService.user.subscribe(user => {
+      if ( user ) {
+        this.voteService.myGivenRating(this.pollId, this.pollOption).subscribe(it => {
+          this.myGivenRating = this.voteService.parseRatingNumber(it);
+        });
+      }
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {

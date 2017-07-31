@@ -1,0 +1,22 @@
+<form>
+  <md-input-container
+    style="width:100%" *ngIf="(authService.user | async)"
+  >
+    <input
+      mdInput
+      [formControl]="commentText"
+      (keydown.enter)="addComment()"
+    >
+    <md-placeholder>
+      Add comment
+    </md-placeholder>
+  </md-input-container>
+
+  <button  *ngIf="!(authService.user | async)"
+           md-button md-raised-button color="secondary"
+           (click)="authService.login()">
+    Please log in to add comments
+  </button>
+
+
+</form>

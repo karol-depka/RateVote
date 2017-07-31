@@ -25,6 +25,12 @@ import {VoteService} from './shared/vote.service';
 import { PollOptionComponent } from './poll/poll-option/poll-option.component';
 import { OptionResultsComponent } from './poll/poll-option/option-results/option-results.component';
 import {RatingsResultsService} from './shared/ratings-results.service';
+import {CommentStmt} from '@angular/compiler';
+import {CommentsService} from './shared/comments.service';
+import { CommentsListComponent } from './comments-list/comments-list.component';
+import { CommentStatsComponent } from './comment-stats/comment-stats.component';
+import { CommentEditComponent } from './comment-edit/comment-edit.component';
+import {UiNotifyService} from './shared/ui-notification.service'
 
 
 const appRoutes: Routes = [
@@ -55,6 +61,9 @@ const appRoutes: Routes = [
     RatingsExperimentsComponent,
     PollOptionComponent,
     OptionResultsComponent,
+    CommentsListComponent,
+    CommentStatsComponent,
+    CommentEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +92,8 @@ const appRoutes: Routes = [
     PollService,
     VoteService,
     RatingsResultsService,
+    CommentsService,
+    UiNotifyService,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

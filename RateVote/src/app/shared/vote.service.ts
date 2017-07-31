@@ -3,6 +3,7 @@ import {PollOption} from './poll.service';
 import {DbList, DbObject, DbService} from './db.service';
 import {AuthService} from './auth.service';
 import {Rating} from 'ngx-rating';
+import {DbUserInfo} from './history'
 
 export class GivenRating {
   rating: string;
@@ -29,14 +30,13 @@ export class VoteService {
   }
 
   vote(pollId: string, pollOption: PollOption, rating: number, maxRating: number) {
+    const loggedUser = this.authService.userSaved;
 
-    if ( ! this.authService.userSaved ) {
+    if ( ! loggedUser ) {
       window.alert('No logged user! Cannot give rating yet.')
+      return;
     } else {
-      const user = this.authService.userSaved && {
-          displayName: this.authService.userSaved.displayName,
-          id: this.authService.userSaved.uid,
-        }
+      const user = loggedUser && new DbUserInfo(loggedUser);
       const dbObject = this.myGivenRating(pollId, pollOption);
 
       const newObject = {

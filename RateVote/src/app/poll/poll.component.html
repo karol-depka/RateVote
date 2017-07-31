@@ -17,11 +17,17 @@
 
 </md-card>
 
+
+<app-comment-edit></app-comment-edit>
+<br/>
+
+
 <button  *ngIf="!(authService.user | async)"
          md-button md-raised-button color="secondary"
          (click)="authService.login()">
   Please log in to add options
 </button>
+
 
 <p *ngIf="! (options | async)">Loading poll options...</p>
 
@@ -39,6 +45,8 @@
   </tr>
 
 </table>
+
+
 
 <!--<form #newPollOptionTitle>-->
 <form>
