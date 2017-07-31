@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import {DbList, DbService} from './db.service';
+import {DbList, DbObject, DbService} from './db.service';
 import {PollOption} from './poll.service';
 import {AuthService} from './auth.service'
 import {DbHistory, HasHistory} from './history'
 import {UiNotifyService} from './ui-notification.service'
 import {User} from 'firebase/app'
+import {Observable} from 'rxjs/Observable'
 
 export class CommentInclusion implements HasHistory {
+  $key: string
   history: DbHistory
 
   constructor(byUser: User) {
@@ -39,8 +41,14 @@ export class CommentsService {
 
   }
 
-  listCommentsFor(commentTarget: CommentTarget) {
-
+  listCommentsFor(commentTarget: CommentTarget): Observable<Array<DbObject<Comment> > > {
+    const fkList: DbList<CommentInclusion> = this.getCommentsOnTargetForeignKeyList(commentTarget.$key)
+    return fkList.map(list => {
+        return list.map(fk => {
+          return this.dbService.objectById('Comments', fk.$key);
+        })
+      }
+    )
   }
 
   addComment(commentTarget: CommentTarget, comment: string) {
@@ -59,9 +67,17 @@ export class CommentsService {
     // TODO: do this in single db write
     const newCommentId = this.commentsDbList.push(newComment).key
     // future optimization: no need to go via list
-    this.dbService.list(`CommentsOn/${commentTargetId}`).update(
+    this.getCommentsOnTargetForeignKeyList(commentTargetId).update(
       newCommentId,
       new CommentInclusion(user));
 
+  }
+
+  private getCommentsOnTargetForeignKeyList(commentTargetId: string) {
+    return this.dbService.list(this.commentsOnPath(commentTargetId))
+  }
+
+  private commentsOnPath(commentTargetId: string) {
+    return `CommentsOn/${commentTargetId}`
   }
 }

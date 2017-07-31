@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Comment, CommentsService, CommentTarget} from '../shared/comments.service'
+import {DbObject} from '../shared/db.service'
+import {Observable} from 'rxjs/Observable'
 
 @Component({
   selector: 'app-comments-list',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentsListComponent implements OnInit {
 
-  constructor() { }
+  @Input() commentTarget: CommentTarget;
+
+  comments: Observable<Array<DbObject<Comment> > >
+
+  constructor(
+    private commentsService: CommentsService,
+  ) { }
 
   ngOnInit() {
+    this.comments = this.commentsService.listCommentsFor(this.commentTarget)
   }
 
 }

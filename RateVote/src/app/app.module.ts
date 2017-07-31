@@ -30,7 +30,8 @@ import {CommentsService} from './shared/comments.service';
 import { CommentsListComponent } from './comments-list/comments-list.component';
 import { CommentStatsComponent } from './comment-stats/comment-stats.component';
 import { CommentEditComponent } from './comment-edit/comment-edit.component';
-import {UiNotifyService} from './shared/ui-notification.service'
+import {UiNotifyService} from './shared/ui-notification.service';
+import { CommentViewComponent } from './comment-view/comment-view.component'
 
 
 const appRoutes: Routes = [
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
     CommentsListComponent,
     CommentStatsComponent,
     CommentEditComponent,
+    CommentViewComponent,
   ],
   imports: [
     BrowserModule,
