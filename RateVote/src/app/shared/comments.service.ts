@@ -80,4 +80,10 @@ export class CommentsService {
   private commentsOnPath(commentTargetId: string) {
     return `CommentsOn/${commentTargetId}`
   }
+
+  commentCount(commentTarget: CommentTarget): Observable<number> {
+    return this.listCommentsFor(commentTarget).map(list => {
+      return list.length
+    })
+  }
 }

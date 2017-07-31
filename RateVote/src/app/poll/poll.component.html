@@ -24,31 +24,45 @@
 
 <app-comment-edit
   [commentTarget]="poll"
+  [labelText]="'Add comment to the poll'"
 ></app-comment-edit>
 <br/>
 
 
-<button  *ngIf="!(authService.user | async)"
+<button  *ngIf="! user"
          md-button md-raised-button color="secondary"
-         (click)="authService.login()">
+         (click)="login()">
   Please log in to add options
 </button>
 
 
-<p *ngIf="! (options | async)">Loading poll options...</p>
+<p *ngIf="! (pollOptions | async)">Loading poll options...</p>
 
 <table>
-  <tr>
-    <ng-template md-list ngFor let-option [ngForOf]="options | async" >
-      <tr app-poll-option
-          [pollOption]="option"
-          [pollId]="pollId"
-          [showDomains]="showDomains"
-          [showResults]="showResults"
-      >
-      </tr>
-    </ng-template>
-  </tr>
+  <ng-template md-list ngFor let-pollOption [ngForOf]="pollOptions | async" >
+    <tr app-poll-option
+        style="vertical-align: baseline"
+        [pollOption]="pollOption"
+        [pollId]="pollId"
+        [showDomains]="showDomains"
+        [showResults]="showResults"
+    >
+    </tr>
+    <tr>
+      <!-- *ngIf="showComments" -->
+      <td colspan="99" >
+        <app-comments-list
+          [commentTarget]="pollOption"
+        ></app-comments-list>
+
+        <app-comment-edit
+          [commentTarget]="pollOption"
+          [labelText]="'Add comment to this poll option'"
+        ></app-comment-edit>
+      </td>
+    </tr>
+
+  </ng-template>
 
 </table>
 
@@ -57,7 +71,7 @@
 <!--<form #newPollOptionTitle>-->
 <form>
   <md-input-container
-      style="width:100%" *ngIf="(authService.user | async)"
+      style="width:100%" *ngIf="user"
   >
     <input
       mdInput
@@ -69,9 +83,9 @@
     </md-placeholder>
   </md-input-container>
 
-  <button  *ngIf="!(authService.user | async)"
+  <button  *ngIf="!user"
            md-button md-raised-button color="secondary"
-           (click)="authService.login()">
+           (click)="login()">
     Please log in to add options
   </button>
 

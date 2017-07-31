@@ -5,6 +5,7 @@ import {DbList} from '../shared/db.service';
 import {AuthService} from '../shared/auth.service';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
+import {User} from 'firebase/app'
 
 @Component({
   selector: 'app-poll',
@@ -13,7 +14,7 @@ import {Title} from '@angular/platform-browser';
 })
 export class PollComponent implements OnInit {
 
-  options: DbList<PollOption>;
+  pollOptions: DbList<PollOption>;
 
   newPollOptionTitle: FormControl;
   // @ViewChild('newPollOptionTitle') newPollOptionTitleElement;
@@ -28,7 +29,7 @@ export class PollComponent implements OnInit {
   isPeopleMatcher: boolean = this.pollId === 'PeopleMatcherName'
   showDomains: boolean = this.isPeopleMatcher
   showResults: boolean = window.location.pathname.endsWith('/results')
-  private user;
+  user: User;
 
   constructor(
     private pollService: PollService,
@@ -44,7 +45,7 @@ export class PollComponent implements OnInit {
 
   ngOnInit() {
     this.newPollOptionTitle = new FormControl();
-    this.options = this.pollService.listOptionsForPoll(this.pollId);
+    this.pollOptions = this.pollService.listOptionsForPoll(this.pollId);
     this.titleService.setTitle('RateVote - ' + this.pollTitle);
   }
 
@@ -63,7 +64,7 @@ export class PollComponent implements OnInit {
       }
     };
     console.log('addPollOption', newOption)
-    this.options.push(newOption)
+    this.pollOptions.push(newOption)
     this.scrollToBottom();
   }
 
@@ -80,6 +81,10 @@ export class PollComponent implements OnInit {
 
     // } catch (err) {
     // }
+  }
+
+  login() {
+    this.authService.login()
   }
 
 

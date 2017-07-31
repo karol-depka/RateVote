@@ -13,6 +13,7 @@ export class CommentEditComponent implements OnInit {
   commentText: FormControl;
 
   @Input() commentTarget: CommentTarget;
+  @Input() labelText: string;
   public lastCommentText: string
 
   constructor(

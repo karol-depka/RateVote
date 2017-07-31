@@ -43,7 +43,7 @@ export class RatingsResultsService {
           ratingAverage: ratingAvg,
         }
       );
-      console.log('results summary', resultsSummary);
+      // console.log('results summary', resultsSummary);
       return resultsSummary;
 
     });

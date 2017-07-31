@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {CommentsService, CommentTarget} from '../shared/comments.service'
 
 @Component({
   selector: 'app-comment-stats',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentStatsComponent implements OnInit {
 
-  constructor() { }
+  @Input() commentTarget: CommentTarget;
+  commentCount: number
+
+  constructor(
+    private commentsService: CommentsService
+  ) { }
 
   ngOnInit() {
+    this.commentsService.commentCount(this.commentTarget).subscribe(count => {
+      this.commentCount = count
+    })
   }
+
 
 }

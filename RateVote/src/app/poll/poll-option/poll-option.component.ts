@@ -18,6 +18,8 @@ export class PollOptionComponent implements OnInit, OnChanges {
   @Input() showDomains: boolean;
   @Input() showResults: boolean;
 
+  showComments = false
+
   myGivenRating: number;
 
   constructor(
@@ -51,6 +53,10 @@ export class PollOptionComponent implements OnInit, OnChanges {
       this.myGivenRating,
       5);
 
+  }
+
+  toggleComments() {
+    this.showComments = ! this.showComments
   }
 
 }

@@ -1,3 +1,15 @@
-<p>
-  comment-stats works!
-</p>
+<button md-button md-raised-button>
+
+  <ng-template [ngIf]="commentCount == 0">
+    No comments
+  </ng-template>
+
+  <ng-template [ngIf]="commentCount == 1">
+    {{commentCount}} comment
+  </ng-template>
+
+  <ng-template [ngIf]="commentCount > 1">
+    {{commentCount}} comments
+  </ng-template>
+
+</button>

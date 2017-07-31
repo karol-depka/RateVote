@@ -1,15 +1,11 @@
+<!--<tr>-->
+
 <td>
   <p>
     <b>{{pollOption.title}} </b>
   </p>
 
-  <app-comments-list
-    [commentTarget]="pollOption"
-  ></app-comments-list>
 
-  <app-comment-edit
-    [commentTarget]="pollOption"
-  ></app-comment-edit>
   <br/>
 
 </td>
@@ -27,8 +23,7 @@
     (ngModelChange)="onRatingChanged($event)"
     [float]="true"
     [disabled]="false"
-  >
-  </rating>
+  ></rating>
 
   <app-option-results *ngIf="showResults"
     [pollOption]="pollOption"
@@ -37,3 +32,13 @@
 
 
 </td>
+<td>
+  <app-comment-stats
+    [commentTarget]="pollOption"
+    (click)="toggleComments()"
+  ></app-comment-stats>
+</td>
+
+<!--</tr>-->
+
+

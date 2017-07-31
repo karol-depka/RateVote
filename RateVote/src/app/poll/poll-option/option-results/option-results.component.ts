@@ -14,6 +14,8 @@ export class OptionResultsComponent implements OnInit {
   @Input() pollOption: PollOption;
 
   resultsSummary: RatingResultsSummary
+  ratingAverageText: string
+
 
   constructor(
     private ratingResultsService: RatingsResultsService
@@ -22,6 +24,9 @@ export class OptionResultsComponent implements OnInit {
   ngOnInit() {
     this.ratingResultsService.ratingSummary(this.pollId, this.pollOption).subscribe(summary => {
       this.resultsSummary = summary;
+      this.ratingAverageText =
+        summary.ratingAverage &&
+        summary.ratingAverage.toFixed(1)
     });
 
   }
