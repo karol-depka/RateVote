@@ -2,6 +2,16 @@
   <p>
     <b>{{pollOption.title}} </b>
   </p>
+
+  <app-comments-list
+    [commentTarget]="pollOption"
+  ></app-comments-list>
+
+  <app-comment-edit
+    [commentTarget]="pollOption"
+  ></app-comment-edit>
+  <br/>
+
 </td>
 <td *ngIf="showDomains">
   Domain example: <b>{{domainExample()}}</b>
@@ -24,5 +34,6 @@
     [pollOption]="pollOption"
     [pollId]="pollId"
   ></app-option-results>
+
 
 </td>
