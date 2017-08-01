@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, FirebaseOperation} from 'angularfire2/database'
 import {Observable} from 'rxjs/Observable'
+import {DbObject} from './DbObject'
 
-
-export interface DbObject<T> extends Observable<T> {
-  set(value: any): any;
-  update(value: Object): any;
-  remove(): any;
-}
 
 export interface DbList<T> extends Observable<T[]> {
   // $ref: QueryReference;

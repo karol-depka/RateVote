@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {DbList, DbService} from './db.service';
-import {CommentTarget} from './comments.service'
+import {CommentTarget} from './comment-target'
 
 
 export class Poll implements CommentTarget {

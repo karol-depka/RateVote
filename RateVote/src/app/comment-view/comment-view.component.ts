@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Comment} from '../shared/comments.service'
-import {DbObject} from '../shared/db.service'
+import {DbObject} from '../shared/DbObject'
 
 @Component({
   selector: 'app-comment-view',

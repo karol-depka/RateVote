@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CommentsService, CommentTarget} from '../shared/comments.service'
+import {CommentsService} from '../shared/comments.service'
+import {CommentTarget} from '../shared/comment-target'
 
 @Component({
   selector: 'app-comment-stats',

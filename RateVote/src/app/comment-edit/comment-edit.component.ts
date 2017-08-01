@@ -1,7 +1,8 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../shared/auth.service'
-import {CommentsService, CommentTarget} from '../shared/comments.service'
+import {CommentsService} from '../shared/comments.service'
 import {FormControl} from '@angular/forms'
+import {CommentTarget} from '../shared/comment-target'
 
 @Component({
   selector: 'app-comment-edit',

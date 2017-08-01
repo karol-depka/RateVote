@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import {DbList, DbObject, DbService} from './db.service';
+import {DbList, DbService} from './db.service';
 import {PollOption} from './poll.service';
 import {AuthService} from './auth.service'
 import {DbHistory, HasHistory} from './history'
 import {UiNotifyService} from './ui-notification.service'
 import {User} from 'firebase/app'
 import {Observable} from 'rxjs/Observable'
+import {CommentTarget} from './comment-target'
+import {DbObject} from './DbObject'
 
 export class CommentInclusion implements HasHistory {
   $key: string
@@ -16,11 +18,6 @@ export class CommentInclusion implements HasHistory {
   }
 }
 
-export interface CommentTarget {
-  $key: string
-
-  // getCommentsParentDbPath()
-}
 
 export class Comment implements HasHistory {
   history: DbHistory;

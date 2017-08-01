@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Comment, CommentsService, CommentTarget} from '../shared/comments.service'
-import {DbObject} from '../shared/db.service'
+import {Comment, CommentsService} from '../shared/comments.service'
 import {Observable} from 'rxjs/Observable'
+import {CommentTarget} from '../shared/comment-target'
+import {DbObject} from '../shared/DbObject'
 
 @Component({
   selector: 'app-comments-list',
