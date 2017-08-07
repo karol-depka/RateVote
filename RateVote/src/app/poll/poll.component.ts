@@ -28,6 +28,7 @@ export class PollComponent implements OnInit {
   }
   isPeopleMatcher: boolean = this.pollId === 'PeopleMatcherName'
   showDomains: boolean = this.isPeopleMatcher
+  showAcronyms: boolean = this.isPeopleMatcher
   showResults: boolean = window.location.pathname.endsWith('/results')
   user: User;
 

@@ -16,6 +16,7 @@ export class PollOptionComponent implements OnInit, OnChanges {
   @Input() pollOption: PollOption;
 
   @Input() showDomains: boolean;
+  @Input() showAcronyms: boolean;
   @Input() showResults: boolean;
 
   showComments = false
@@ -43,6 +44,19 @@ export class PollOptionComponent implements OnInit, OnChanges {
 
   domainExample() {
     return this.pollOption.title.toLowerCase() + '.org';
+  }
+
+  acronym() {
+    const string = this.pollOption.title
+    let output: string = ''
+    for ( let i = 0; i < string.length; ++i ) {
+      const char = string[i]
+      // if is upper case
+      if ( char.toUpperCase() === char ) {
+        output = output + char
+      }
+    }
+    return output;
   }
 
   onRatingChanged() {

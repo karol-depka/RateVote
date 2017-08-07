@@ -8,10 +8,13 @@
 
 </td>
 <td *ngIf="showDomains">
-  Domain example: <b>{{domainExample()}}</b>
+  Domain example:<br/><b>{{domainExample()}}</b>
 </td>
 <td *ngIf="showDomains">
   <pre style="font-family: monospace">{{domainExample()}}</pre>
+</td>
+<td *ngIf="showAcronyms">
+  Acronym:<br/><b>{{acronym()}}</b>
 </td>
 <td>
   <rating
