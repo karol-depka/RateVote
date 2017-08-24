@@ -19,6 +19,9 @@ export class PollOptionComponent implements OnInit, OnChanges {
   @Input() showAcronyms: boolean;
   @Input() showResults: boolean;
 
+  showDomain: boolean;
+  showAcronym: boolean;
+
   showComments = false
 
   myGivenRating: number;
@@ -36,6 +39,13 @@ export class PollOptionComponent implements OnInit, OnChanges {
         });
       }
     })
+    if ( this.pollOption.title.match(' ') ) {
+      this.showDomain = false;
+      this.showAcronym = false;
+    } else {
+      this.showDomain = this.showDomains
+      this.showAcronym = this.showAcronyms
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
