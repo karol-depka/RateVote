@@ -15,6 +15,7 @@ export class OptionResultsComponent implements OnInit {
 
   resultsSummary: RatingResultsSummary
   ratingAverageText: string
+  protected ratingList: GivenRating[]
 
 
   constructor(
@@ -22,6 +23,9 @@ export class OptionResultsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.ratingResultsService.ratingList(this.pollId, this.pollOption).subscribe(it => {
+      this.ratingList = it;
+      })
     this.ratingResultsService.ratingSummary(this.pollId, this.pollOption).subscribe(summary => {
       this.resultsSummary = summary;
       this.ratingAverageText =
@@ -31,4 +35,7 @@ export class OptionResultsComponent implements OnInit {
 
   }
 
+  ratingToString(r) {
+    return r.toString().replace('/5', '')
+  }
 }

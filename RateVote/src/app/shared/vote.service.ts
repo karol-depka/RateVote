@@ -3,11 +3,12 @@ import {PollOption} from './poll.service';
 import {DbList, DbService} from './db.service';
 import {AuthService} from './auth.service';
 import {Rating} from 'ngx-rating';
-import {DbUserInfo} from './history'
+import {DbHistory, DbUserInfo} from './history'
 import {DbObject} from './DbObject'
 
 export class GivenRating {
   rating: string;
+  history?: DbHistory
 }
 
 @Injectable()

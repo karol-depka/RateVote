@@ -3,5 +3,9 @@
   {{resultsSummary?.ratingCount}} ratings<ng-template [ngIf]="resultsSummary?.ratingCount > 0">,
     {{ratingAverageText}}
   </ng-template>
+  
+<p *ngFor="let rating of ratingList">
+  {{ratingToString(rating?.rating)}} - {{rating?.history?.created?.byUser?.displayName}}
+</p>
 
 </ng-template>
